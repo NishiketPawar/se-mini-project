@@ -7,15 +7,12 @@ import net.proteanit.sql.DbUtils;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.ResultSet;
-import java.util.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
 
 
 public class Teach extends JFrame implements ActionListener  {
-    JLabel instr;
-    JButton edit,search,refresh,marks;
+    JButton edit,refresh,back;
     JScrollPane sp1,sp2;
     JTable sem1,sem2;
     JTabbedPane tabs;
@@ -27,10 +24,7 @@ public class Teach extends JFrame implements ActionListener  {
     public Teach(){
         setSize(1050,500);
 
-//        instr = new JLabel("DOUBLE TAP ON THE COLUMN TO SELECT THE ROW AND PRESS UPDATE TO UPDATE IT!!");
-//        instr.setBounds(150,290,650,80);
-//        instr.setFont(f1);
-//        add(instr);
+
 
         edit = new JButton("Edit / Update");
         edit.setBounds(60 , 370 , 150,50);
@@ -38,10 +32,7 @@ public class Teach extends JFrame implements ActionListener  {
         edit.addActionListener(this);
         add(edit);
 
-//        marks = new JButton("PASS / FAIL");
-//        marks.setBounds(450,370,150,50);
-//        marks.setFont(f2);
-//        add(marks);
+
 
         refresh =new JButton("REFRESH");
         refresh.setBounds(850 ,370, 100 ,50);
@@ -66,11 +57,11 @@ public class Teach extends JFrame implements ActionListener  {
 
         try{
             conn c = new conn();
-            String str1 = "select  Gr, Name, Dob, P1, C1, M1, Mech, BEE from details;";
+            String str1 = "select  Gr, Name,  P1, C1, M1, Mech, BEE , Average1 from details;";
             ResultSet rs1 = c.s.executeQuery(str1);
             sem1.setModel(DbUtils.resultSetToTableModel(rs1));
 
-            String str2 = "select  Gr, Name, P2, C2, M2, Drawing, CP from details;";
+            String str2 = "select  Gr, Name, P2, C2, M2, Drawing, CP , Average2 from details;";
             ResultSet rs2 = c.s.executeQuery(str2);
             sem2.setModel(DbUtils.resultSetToTableModel(rs2));
 
@@ -78,7 +69,14 @@ public class Teach extends JFrame implements ActionListener  {
             System.out.println(e);
         }
 
+        ImageIcon i2 = new ImageIcon(ClassLoader.getSystemResource("images/7.png"));
+        Image i4 = i2.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+        ImageIcon i3 = new ImageIcon(i4);
 
+        back = new JButton(i3);
+        back.setBounds(0,0,50,50);
+        back.addActionListener(this);
+        add(back);
 
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("images/6.jpg"));
         JLabel im1 = new JLabel(i1);
@@ -95,15 +93,16 @@ public class Teach extends JFrame implements ActionListener  {
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource()==edit){
             new update();
+            setVisible(false);
         }
         if(ae.getSource()==refresh){
             try{
                 conn c = new conn();
-                String str1 = "select  Gr, Name, Dob, P1, C1, M1, Mech, BEE from details;";
+                String str1 = "select  Gr, Name, Dob, P1, C1, M1, Mech, BEE , Average1 from details;";
                 ResultSet rs1 = c.s.executeQuery(str1);
                 sem1.setModel(DbUtils.resultSetToTableModel(rs1));
 
-                String str2 = "select  Gr, Name, P2, C2, M2, Drawing, CP from details;";
+                String str2 = "select  Gr, Name, P2, C2, M2, Drawing, CP , Average2 from details;";
                 ResultSet rs2 = c.s.executeQuery(str2);
                 sem2.setModel(DbUtils.resultSetToTableModel(rs2));
 
@@ -111,7 +110,10 @@ public class Teach extends JFrame implements ActionListener  {
                 System.out.println(e);
             }
         }
-
+        if(ae.getSource()==back){
+            new firsttab();
+            setVisible(false);
+        }
 
    }
     public static void main(String[] args) {

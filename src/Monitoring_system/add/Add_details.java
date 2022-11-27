@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 
 import Monitoring_system.Teach;
 import Monitoring_system.conn;
+import Monitoring_system.firsttab;
 import com.toedter.calendar.JDateChooser;
 
 
@@ -21,7 +22,7 @@ public class Add_details  extends JFrame implements ActionListener {
 
     JRadioButton male, female;
     JDateChooser dob;
-    JButton addData, cancel;
+    JButton addData, cancel,back;
 
 
     //size variables
@@ -40,55 +41,43 @@ public class Add_details  extends JFrame implements ActionListener {
         l1 = new JLabel("Name");
         l1.setBounds(labX, 40, labW, labH);
         l1.setFont(f1);
-//        l1.setForeground(Color.white);
         add(l1);
 
         l2 = new JLabel("DOB");
         l2.setBounds(labX, 100, labW, labH);
         l2.setFont(f1);
-//        l2.setForeground(Color.white);
         add(l2);
 
         l3 = new JLabel("Age");
         l3.setBounds(labX, 160, labW, labH);
         l3.setFont(f1);
-//        l3.setForeground(Color.white);
         add(l3);
 
         l4 = new JLabel("Gender");
         l4.setBounds(labX, 220, labW, labH);
         l4.setFont(f1);
-//        l4.setForeground(Color.white);
         add(l4);
 
         l5 = new JLabel("Address");
         l5.setBounds(labX, 280, labW, labH);
         l5.setFont(f1);
-//        l5.setForeground(Color.white);
         add(l5);
 
         l6 = new JLabel("Aadhaar");
         l6.setBounds(labX, 340, labW, labH);
         l6.setFont(f1);
-//        l6.setForeground(Color.white);
         add(l6);
 
         l7 = new JLabel("Contact");
         l7.setBounds(labX, 400, labW, labH);
         l7.setFont(f1);
-//        l7.setForeground(Color.white);
         add(l7);
 
         l8 = new JLabel("Gr No.");
         l8.setBounds(labX, 460, labW, labH);
         l8.setFont(f1);
-//        l8.setForeground(Color.white);
         add(l8);
 
-//        l9 = new JLabel("College Name");
-//        l9.setBounds(labX,520,labW,labH);
-//        l9.setFont(f1);
-//        add(l9);
 
 
         //textfields
@@ -122,10 +111,6 @@ public class Add_details  extends JFrame implements ActionListener {
         gr.setBounds(textX, 460, textW, textH);
         add(gr);
 
-//        college = new JTextField();
-//        college.setBounds(textX,520,textW,textH);
-//        add(college);
-
         //Jbutton
 
         ButtonGroup b1 = new ButtonGroup();
@@ -155,6 +140,14 @@ public class Add_details  extends JFrame implements ActionListener {
         cancel.setFont(f1);
         cancel.addActionListener(this);
         add(cancel);
+
+        ImageIcon i2 = new ImageIcon(ClassLoader.getSystemResource("images/7.png"));
+        Image i4 = i2.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+        ImageIcon i3 = new ImageIcon(i4);
+        back = new JButton(i3);
+        back.setBounds(0,0,50,50);
+        back.addActionListener(this);
+        add(back);
 
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("images/4.jpeg"));
         JLabel im1 = new JLabel(i1);
@@ -205,6 +198,10 @@ public class Add_details  extends JFrame implements ActionListener {
             {
                 System.out.println(e);
             }
+        }
+        if(ae.getSource()==back){
+            new firsttab();
+            setVisible(false);
         }
 
     }

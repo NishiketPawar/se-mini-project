@@ -12,7 +12,7 @@ public class updateprofile extends JFrame implements ActionListener {
 
     JLabel l1, l2 ,l3,l4;
     JTextField gr, data;
-    JButton disp , submit;
+    JButton disp , submit,back;
     JComboBox fileds;
     JTable t1;
     JScrollPane sp1;
@@ -68,6 +68,14 @@ public class updateprofile extends JFrame implements ActionListener {
          submit.addActionListener(this);
          add(submit);
 
+         ImageIcon i2 = new ImageIcon(ClassLoader.getSystemResource("images/7.png"));
+         Image i4 = i2.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH);
+        ImageIcon i3 = new ImageIcon(i4);
+        back = new JButton(i3);
+        back.setBounds(0,0,50,50);
+        back.addActionListener(this);
+        add(back);
+
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("images/3.png"));
         JLabel im1 = new JLabel(i1);
         im1.setBounds(0,0,900,600);
@@ -107,6 +115,10 @@ public class updateprofile extends JFrame implements ActionListener {
                System.out.println(e);
            }
 
+        }
+        if(ae.getSource()==back){
+            new firsttab();
+            setVisible(false);
         }
     }
 

@@ -12,7 +12,7 @@ public class login extends JFrame implements ActionListener {
     JLabel l1,l2;
     JTextField username;
     JPasswordField password;
-    JButton signin,login,cancel;
+    JButton login,cancel;
     Font f1 = new Font("Tahoma", Font.PLAIN, 16);
 
     login()
@@ -50,6 +50,7 @@ public class login extends JFrame implements ActionListener {
         cancel.addActionListener(this);
         add(cancel);
 
+
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("images/2.jpeg"));
         JLabel im1 = new JLabel(i1);
         im1.setBounds(0,0,500,400);
@@ -81,6 +82,7 @@ public class login extends JFrame implements ActionListener {
                 if(rs.next()){
                     JOptionPane.showMessageDialog(null,"Login Succfull!!!");
                     new firsttab();
+                    setVisible(false);
 
                 }
                 else {
